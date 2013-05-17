@@ -1,24 +1,17 @@
 #!/bin/bash
-# This command will automatically create Rails::API application running in TorqueBox template
 
-rvm install jruby-1.7.4
-rvm use jruby-1.7.4@global
-gem install torquebox-server --version=2.3.1 -s http://torquebox.org/rubygems
-gem install torquebox-backstage
+CURRENT_DIR=$(pwd)
+APP_NAME=$1
+APP_CONSTANT=$2
 
-mkdir -p $1
-cd $1
-rvm --rvmrc --create jruby-1.7.3@$1
-gem install rails-api --no-ri --no-rdoc
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-rails-api new . --skip-action-mailer --skip-sprockets --skip-javascript --skip-test-unit --skip-active-record
-rm -rf public
-rm -rf db
-rm -rf doc
+# clone rails app template
+# cp -R $DIR/../../rails_service_template $CURRENT_DIR/$APP_NAME
+clone ssh://git@stash.office/rubi/rails_service_template.git $CURRENT_DIR/$APP_NAME
 
-torquebox rails
-# sed -i '.original' 's/2.3.0/2.3.1/' Gemfile
-# rm Gemfile.original
-bundle install
-
-sdoc -o public/doc .
+cd $CURRENT_DIR/$APP_NAME
+# echo "find . -type f -print0 | xargs -0 sed -i '' 's/ServiceTemplateApp/$APP_CONSTANT/g'"
+find . -type f -print0 | xargs -0 sed -i '' "s/RailsServiceTemplate/$APP_CONSTANT/g"
+# echo "find . -type f -print0 | xargs -0 sed -i '' 's/service_template_app/$APP_NAME/g'"
+find . -type f -print0 | xargs -0 sed -i '' "s/rails_service_template/$APP_NAME/g"
