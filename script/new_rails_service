@@ -13,8 +13,11 @@ gem install rails-api --no-ri --no-rdoc
 rails-api new . --skip-action-mailer --skip-sprockets --skip-javascript --skip-test-unit --skip-active-record
 rm -rf public
 rm -rf db
+rm -rf doc
 
 torquebox rails
 # sed -i '.original' 's/2.3.0/2.3.1/' Gemfile
-rm Gemfile.original
+# rm Gemfile.original
+bundle install
 
+sdoc -o public/doc .
