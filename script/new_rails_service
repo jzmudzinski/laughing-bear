@@ -16,11 +16,11 @@ rm -rf .git
 rvm install jruby-1.7.4
 rvm jruby-1.7.4@global do gem install torquebox-server --version=2.3.1 -s http://torquebox.org/rubygems
 rvm jruby-1.7.4@global do gem install torquebox-backstage
-rvm --rvmrc --create jruby-1.7.3@$APP_NAME
+rvm all do --rvmrc --create jruby-1.7.3@$APP_NAME
 
 # echo "find . -type f -print0 | xargs -0 sed -i '' 's/ServiceTemplateApp/$APP_CONSTANT/g'"
 find . -type f | xargs sed -i '' "s/RailsServiceTemplate/$APP_CONSTANT/g"
 # echo "find . -type f -print0 | xargs -0 sed -i '' 's/service_template_app/$APP_NAME/g'"
 find . -type f | xargs sed -i '' "s/rails_service_template/$APP_NAME/g"
 
-rvm do jruby-1.7.4@$APP_NAME bundle install
+rvm jruby-1.7.4@$APP_NAME do bundle install
