@@ -15,7 +15,8 @@ gem 'jruby-openssl'
 # Deploy with Capistrano
 # gem 'capistrano', :group => :development
 
-gem 'torquebox', "2.3.1"
+gem 'torquebox', "2.3.0"
+gem 'torquebox-server', "2.3.0"
 
 group :development, :test do
   gem 'sdoc'
