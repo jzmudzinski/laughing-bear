@@ -12,9 +12,6 @@ gem 'jruby-openssl'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
-# Deploy with Capistrano
-# gem 'capistrano', :group => :development
-
 gem 'torquebox', "2.3.0"
 gem 'torquebox-server', "2.3.0"
 
