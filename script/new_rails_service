@@ -1,9 +1,10 @@
 #!/bin/bash
 # This command will automatically create Rails::API application running in TorqueBox template
 
-rvm install jruby-1.7.3
-rvm use jruby-1.7.3@global
-gem install torquebox-server
+rvm install jruby-1.7.4
+rvm use jruby-1.7.4@global
+gem install torquebox-server --version=2.3.1 -s http://torquebox.org/rubygems
+gem install torquebox-backstage
 
 mkdir -p $1
 cd $1

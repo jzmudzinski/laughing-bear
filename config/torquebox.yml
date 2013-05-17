@@ -5,16 +5,14 @@
 web:
   context: "/"
 jobs:
-  post_counter:
-    job: PostCounter
+  book_generator:
+    job: BookGenerator
     cron: "*/10 * * * * ?"
-services:
-  post_idea_grabber:
-    service: PostIdeaGrabber
-    config:
-      queue_name: "/queue/post_ideas"
 queues:
-  /queue/post_ideas:
+  /queues/books/new:
+    durable: false
+  /queues/books/create:
     durable: false
 messaging:
-  /queue/post_ideas: PostIdeaProcessor
+  /queues/books/new: BookInfoProcessor
+  /queues/books/create: StoreBookProcessor
