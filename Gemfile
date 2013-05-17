@@ -19,7 +19,7 @@ gem 'torquebox', "2.3.1"
 
 group :development, :test do
   gem 'sdoc'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.0'
 end
 
 group :development do

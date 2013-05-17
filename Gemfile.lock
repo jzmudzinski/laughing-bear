@@ -48,7 +48,6 @@ GEM
     journey (1.0.4)
     jruby-openssl (0.8.8)
       bouncy-castle-java (>= 1.5.0147)
-    json (1.8.0)
     json (1.8.0-java)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -162,7 +161,7 @@ DEPENDENCIES
   jruby-openssl
   rails (= 3.2.13)
   rails-api
-  rspec-rails
+  rspec-rails (~> 2.0)
   sdoc
   torquebox (= 2.3.1)
   torquebox-capistrano-support
