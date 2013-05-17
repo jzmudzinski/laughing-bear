@@ -8,10 +8,12 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # clone rails app template
 # cp -R $DIR/../../rails_service_template $CURRENT_DIR/$APP_NAME
-clone ssh://git@stash.office/rubi/rails_service_template.git $CURRENT_DIR/$APP_NAME
+git clone ssh://git@stash.office/rubi/rails_service_template.git $CURRENT_DIR/$APP_NAME
 
 cd $CURRENT_DIR/$APP_NAME
+rm -rf .git
+
 # echo "find . -type f -print0 | xargs -0 sed -i '' 's/ServiceTemplateApp/$APP_CONSTANT/g'"
-find . -type f -print0 | xargs -0 sed -i '' "s/RailsServiceTemplate/$APP_CONSTANT/g"
+find . -type f | xargs sed -i '' "s/RailsServiceTemplate/$APP_CONSTANT/g"
 # echo "find . -type f -print0 | xargs -0 sed -i '' 's/service_template_app/$APP_NAME/g'"
-find . -type f -print0 | xargs -0 sed -i '' "s/rails_service_template/$APP_NAME/g"
+find . -type f | xargs sed -i '' "s/rails_service_template/$APP_NAME/g"
