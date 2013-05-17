@@ -1,25 +1,24 @@
-set :application, "set your application name here"
-set :repository,  "set your repository location here"
+require 'torquebox-capistrano-support'
+require 'bundler/capistrano'
 
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
+# SCM
+set :application,       "rails_service_template"
+set :repository,        "git@github.com:jzmudzinski/laughing-bear.git"
+set :branch,            "master"
+set :user,              "release"
+set :scm,               :git
+set :scm_verbose,       true
+set :use_sudo,          false
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-role :db,  "your slave db-server here"
+# Production server
+set :deploy_to,         "/data/#{application}"
+set :torquebox_home,    "/opt/torquebox/current"
+set :jboss_init_script, "/etc/init.d/jboss-as-standalone"
+set :rails_env,         "production"
+set :app_context,       "/"
 
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+ssh_options[:forward_agent] = false
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
-
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+role :web, "web-server"
+role :app, "app-server"
+role :db,  "app-server", primary: true
